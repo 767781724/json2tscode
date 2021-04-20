@@ -30,20 +30,27 @@ export function parseJson(json: string): Promise<object> {
     return Promise.reject(new Error("JSON 格式 无效"));
   }
 }
+
 export function json2Columns(json: Object): string {
-  const arr = [];
+  const filter = [];
+  const columns = [];
   for (const key in json) {
     const keyStr = key.split('_');
-    console.log(keyStr);
     if (keyStr[0] === "f"){
-      arr.push(
+      filter.push(
         `{\n\tid: '${keyStr[keyStr.length-1]}',\n\tlabel: intl.get('${key}'),\n\t_node: <Input />,\n}`
       );
     } else if (keyStr[0] === "c") {
-      arr.push(`{\n\tdataIndex: '${keyStr[keyStr.length-1]}',\n\ttitle: intl.get('${key}')\n}`);
+      columns.push(`{\n\tdataIndex: '${keyStr[keyStr.length-1]}',\n\ttitle: intl.get('${key}')\n}`);
+    } else if (keyStr[0] === "fc") {
+      filter.push(
+        `{\n\tid: '${keyStr[keyStr.length-1]}',\n\tlabel: intl.get('${key}'),\n\t_node: <Input />,\n}`
+      );
+      columns.push(`{\n\tdataIndex: '${keyStr[keyStr.length-1]}',\n\ttitle: intl.get('${key}')\n}`);
     }
   }
-  return arr.reduce((a, b) => `${a},\n${b}`);
+  const rstr = `conditions={[\n${filter.reduce((a, b) => `${a},\n${b}`)}\n]}\ncolumns={[\n${columns.reduce((a, b) => `${a},\n${b}`)}\n]}`;
+  return rstr;
 }
 export function pasteToMarker(content: string) {
   const { activeTextEditor } = vscode.window;
@@ -54,4 +61,22 @@ export function pasteToMarker(content: string) {
 }
 export function handleError(error: Error) {
   vscode.window.showErrorMessage(error.message);
+}
+export function parseObject (obj: string): Promise<Object> {
+  const tryEval = (str: any) => eval(`const a = ${str}; a`);
+  try {
+    return Promise.resolve(tryEval(`{${obj}}`));
+  } catch (error) {
+    return Promise.resolve(new Error("Object格式错误"));
+  }
+}
+
+export function json2intl(json: Object): string {
+  const arr = [];
+  for (const key in json) {
+    arr.push(
+      `intl.get('${key}')`
+    );
+  }
+  return arr.reduce((a, b) => `${a},\n${b}`);
 }

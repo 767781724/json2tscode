@@ -12,7 +12,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:json2tscode.clipboard2columns"
+    "onCommand:json2tscode.clipboard2columns",
+    "onCommand:json2tscode.clipboard2intl"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -20,6 +21,10 @@
       {
         "command": "json2tscode.clipboard2columns",
         "title": "剪贴板json转表单页面代码"
+      },
+      {
+        "command": "json2tscode.clipboard2intl",
+        "title": "剪贴板json转多语言代码"
       }
     ],
     "keybindings": [
@@ -27,6 +32,11 @@
         "command": "json2tscode.clipboard2columns",
         "key": "ctrl+shift+C",
         "mac": "cmd+shift+C"
+      },
+      {
+        "command": "json2tscode.clipboard2intl",
+        "key": "ctrl+shift+Z",
+        "mac": "cmd+shift+Z"
       }
     ],
     "menus": {
@@ -34,6 +44,10 @@
         {
           "when": "editorFocus",
           "command": "json2tscode.clipboard2columns"
+        },
+        {
+          "when": "editorFocus",
+          "command": "json2tscode.clipboard2intl"
         }
       ]
     }
