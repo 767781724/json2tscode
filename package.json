@@ -3,6 +3,7 @@
   "displayName": "json2tscode",
   "description": "Json to ts code",
   "version": "0.0.1",
+  "publisher": "Muguchenzhong",
   "engines": {
     "vscode": "^1.55.0"
   },
@@ -10,28 +11,28 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:json2tscode.fromClipboard"
+    "onCommand:json2tscode.clipboard2columns"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "json2tscode.fromClipboard",
-        "title": "剪贴板json转ts代码"
+        "command": "json2tscode.clipboard2columns",
+        "title": "剪贴板json转表单页面代码"
       }
     ],
     "keybindings": [
       {
-        "command": "json2tscode.fromClipboard",
-        "key": "ctrl+alt+V",
-        "mac": "cmd+alt+V"
+        "command": "json2tscode.clipboard2columns",
+        "key": "ctrl+shift+C",
+        "mac": "cmd+shift+C"
       }
     ],
     "menus": {
       "editor/context": [
         {
           "when": "editorFocus",
-          "command": "json2tscode.fromClipboard"
+          "command": "json2tscode.clipboard2columns"
         }
       ]
     }
