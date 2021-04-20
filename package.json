@@ -2,7 +2,7 @@
   "name": "json2tscode",
   "displayName": "json2tscode",
   "description": "Json to ts code",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "Muguchenzhong",
   "icon": "image/logo.png",
   "engines": {
