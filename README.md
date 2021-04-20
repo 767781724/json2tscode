@@ -2,4 +2,4 @@
 
 ## 将剪贴板json数据转换成table表格字段
 
-快捷键 windows:```ctrl+alt+V```,Mac:```cmd+alt+V```
+快捷键 windows:```ctrl+shift+C```,Mac:```cmd+shift+C```

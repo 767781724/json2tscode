@@ -4,6 +4,7 @@
   "description": "Json to ts code",
   "version": "0.0.1",
   "publisher": "Muguchenzhong",
+  "icon": "images/json2tsIcon.png",
   "engines": {
     "vscode": "^1.55.0"
   },
